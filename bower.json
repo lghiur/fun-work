@@ -1,0 +1,14 @@
+{
+  "name": "LiveCity",
+  "version": "0.1.0",
+  "description": "Live city platform",
+  "authors": [
+    "Laurentiu Ghiur"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "react": "~0.13.3",
+    "reflux": "~0.2.12"
+  }
+}
