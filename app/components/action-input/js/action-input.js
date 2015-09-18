@@ -2,7 +2,9 @@ import BaseComponent from '../../base-component/js/base-component';
 import ActionInputActions from './action-input-actions';
 import ActionInputStore from './action-input-store';
 
-export default class ActionInput extends BaseComponent {
+const displayName = 'ActionInput';
+
+class ActionInput extends BaseComponent {
   constructor() {
     super();
     this._bind('handleChange', 'handleSubmit');
@@ -34,10 +36,21 @@ export default class ActionInput extends BaseComponent {
   render() {
     return (
       <div>
-        <input type="text" value={this.state.value} 
-          onChange={this.handleChange} 
-          onKeyDown={this.handleSubmit} /> 
+        <input
+            onChange={this.handleChange}
+            onKeyDown={this.handleSubmit}
+            type="text"
+            value={this.state.value}
+        /> 
       </div>
       );
   }
 }
+
+ActionInput.displayName = displayName;
+ActionInput.propTypes = {
+  onChangeCallback: React.PropTypes.func.isRequired,
+  onSubmitCallback: React.PropTypes.func.isRequired
+};
+
+export default ActionInput;
