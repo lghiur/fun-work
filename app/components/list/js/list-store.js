@@ -26,12 +26,7 @@ let storeInstance = new ListStore();
 storeInstance.dispatchToken = AppDispatcher.register(action => {
   switch(action.eventName) {
     case 'list.addItem':
-      console.log('store add item');
       storeInstance.onAddItem(action.data);
-      break;
-
-    case 'inputSubmited':
-      storeInstance.onInputSubmited(action.data);
       break;
 
     default:
