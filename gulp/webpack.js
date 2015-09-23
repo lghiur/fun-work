@@ -1,5 +1,6 @@
 module.exports = function(gulp, plugins) {
-  var webpack = require('webpack'),
+  var webpack =  require('webpack'),
+    webpackStream = require('webpack-stream'),
     webpackConfig = {
     output: {
       filename: 'build.js'
@@ -19,9 +20,9 @@ module.exports = function(gulp, plugins) {
 
   return function() {
     return gulp.src('build/app.js')
-    .pipe(plugins.webpack(webpackConfig))
+    .pipe(webpackStream(webpackConfig))
     .pipe(plugins.duration('webpack process'))
     .pipe(gulp.dest('build/'))
     .pipe(plugins.livereload({ start: true }));
-  }
+  };
 };
