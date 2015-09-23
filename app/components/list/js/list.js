@@ -18,21 +18,21 @@ class List extends BaseComponent {
   }
 
   componentDidMount() {
-    this.unsubscribe = ListStore.listen(this.onChange);
+    ListStore.addChangeListener(this.onChange);
   }
 
   componentWillUnmount() {
-    this.unsubscribe();
+    ListStore.removeChangeListener(this._onChange);
   }
 
-  onChange(list) {
+  onChange() {
     this.setState({
-      listItems: list
+      listItems: ListStore.getList()
     });
   }
 
   addItem(value) {
-    ListActions.addItem({
+    ListActions['list.addItem']({
       id: this.state.listItems.length + 1,
       content: value
     });
@@ -46,8 +46,8 @@ class List extends BaseComponent {
       <ul></ul>
       {listItems.map(function(item) {
         return (
-          <ListItem content={item.content} 
-              key={item.id}  
+          <ListItem content={item.content}
+              key={item.id}
           />);
       })}
       </div>
