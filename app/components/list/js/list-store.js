@@ -12,7 +12,6 @@ var ListStore = Reflux.createStore({
   },
   onAddItem: function(arr) {
     var list = this.getList();
-    console.log(list);
     list.push(arr);
     this.saveList(list);
     this.trigger(list);
