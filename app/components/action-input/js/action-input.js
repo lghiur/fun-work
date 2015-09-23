@@ -1,6 +1,4 @@
 import BaseComponent from '../../base-component/js/base-component';
-import ActionInputActions from './action-input-actions';
-import ActionInputStore from './action-input-store';
 
 const displayName = 'ActionInput';
 
@@ -15,21 +13,17 @@ class ActionInput extends BaseComponent {
 
   handleChange(event) {
     this.setState({value: event.target.value});
-    ActionInputActions.inputChanged({
-      value: this.state.value,
-      callback: this.props.onChangeCallback
-    });
+
+    if(this.props.onChangeCallback && typeof this.props.onChangeCallback === 'function') {
+      this.props.onChangeCallback(this.state.value);
+    }
   }
 
   handleSubmit(event) {
     if(event.keyCode !== 13) {
       return;
     }
-
-    ActionInputActions.inputSubmited({
-      value: this.state.value,
-      callback: this.props.onSubmitCallback
-    });
+    this.props.onSubmitCallback(this.state.value);
     this.setState({value: ''});
   }
 
@@ -41,7 +35,7 @@ class ActionInput extends BaseComponent {
             onKeyDown={this.handleSubmit}
             type="text"
             value={this.state.value}
-        /> 
+        />
       </div>
       );
   }
