@@ -1,12 +1,13 @@
-var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
+var gulp = require('gulp'),
+  plugins = require('gulp-load-plugins')(),
+  files = require('./files'),
+  helpers;
 
-module.exports = function() {
-  return {
-    plugins: plugins,
-    jsFiles: ['app/**/**/*.js', '!app/**/_**/**/'],
-    getTask: function(task) {
-      return require('./' + task)(gulp, plugins);
-    }
+helpers = {
+  plugins: plugins,
+  getTask: function(task) {
+    return require('./' + task)(gulp, plugins);
   }
 };
+
+module.exports = helpers;

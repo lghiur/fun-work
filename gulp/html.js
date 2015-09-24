@@ -1,7 +1,9 @@
+var files = require('./files');
+
 module.exports = function(gulp, plugins) {
   return function() {
     return gulp
-      .src(['app/**/*.html'])
-      .pipe(gulp.dest('build'));
-  }
+      .src(files.html.all)
+      .pipe(gulp.dest(files.destFolder));
+  };
 };
