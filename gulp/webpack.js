@@ -1,9 +1,10 @@
 module.exports = function(gulp, plugins) {
   var webpack =  require('webpack'),
     webpackStream = require('webpack-stream'),
+    files = require('./files'),
     webpackConfig = {
     output: {
-      filename: 'build.js'
+      filename: files.js.buildFile
     },
     plugins: [new webpack.optimize.UglifyJsPlugin({
       mangle: false
@@ -19,10 +20,8 @@ module.exports = function(gulp, plugins) {
   }
 
   return function() {
-    return gulp.src('build/app.js')
+    return gulp.src(files.destFolder + '/' + files.js.main)
     .pipe(webpackStream(webpackConfig))
-    .pipe(plugins.duration('webpack process'))
-    .pipe(gulp.dest('build/'))
-    .pipe(plugins.livereload({ start: true }));
+    .pipe(gulp.dest(files.destFolder));
   };
 };

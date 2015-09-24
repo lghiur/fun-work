@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Live city platform",
   "authors": [
-    "Laurentiu Ghiur"
+    "Laurentiu Ghiur",
+    "Dragos Cilibiu"
   ],
   "license": "MIT",
   "dependencies": {},

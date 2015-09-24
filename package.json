@@ -1,6 +1,11 @@
 {
-  "name": "LiveCity",
+  "name": "FunWork",
   "version": "0.1.0",
+  "description": "FunWork",
+  "authors": [
+    "Laurentiu Ghiur",
+    "Dragos Cilibiu"
+  ],
   "devDependencies": {
     "babel-eslint": "^4.1.3",
     "babel-runtime": "^5.8.20",
@@ -11,7 +16,8 @@
     "gulp-concat": "^2.6.0",
     "gulp-duration": "0.0.0",
     "gulp-eslint": "^1.0.0",
-    "gulp-ignore": "^1.2.1",
+    "gulp-filelog": "^0.4.1",
+    "gulp-if": "^1.2.5",
     "gulp-livereload": "^3.8.0",
     "gulp-load-plugins": "^0.10.0",
     "gulp-newer": "^0.5.1",
