@@ -5,8 +5,17 @@ var gulp = require('gulp'),
 
 helpers = {
   plugins: plugins,
-  getTask: function(task) {
-    return require('./' + task)(gulp, plugins);
+  getComponentPath: function(path) {
+    return path.replace(/\\/g, '/').replace('app/', '').replace('build/', '');
+  },
+  getFileBuildPath: function(path) {
+    return path.replace(/\\/g, '/').replace('app', 'build');
+  },
+  getTestOfScript: function(path) {
+    return path.replace(/\\/g, '/').replace(/js\/(?![\s\S]*js\/)/, 'tests/');
+  },
+  getTask: function(options) {
+    return require('./' + options.taskName)(gulp, plugins, options);
   }
 };
 

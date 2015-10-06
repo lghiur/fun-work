@@ -1,5 +1,4 @@
 var helpers = require('./helpers'),
-  files = require('./files'),
   babelConfig = {
     externalHelpers: true,
     optional: ['runtime']
@@ -8,16 +7,27 @@ var helpers = require('./helpers'),
     configFile: 'eslintrc.json'
   };
 
-module.exports = function(gulp, plugins) {
+module.exports = function(gulp, plugins, options) {
+
   return function() {
+    var files;
+    switch (options.type) {
+      case 'scripts':
+        files = global.tempScriptFiles ?
+          'app/**/' + helpers.getComponentPath(global.tempScriptFiles) :
+          global.files.js.all;
+        break;
+      case 'tests':
+        files = global.files.tests.all;
+        break;
+    }
+
     return gulp
-      .src(files.js.all)
+      .src(files)
       .pipe(plugins.eslint(eslintConfig))
       .pipe(plugins.eslint.format())
-      .pipe(plugins.newer(files.destFolder))
-      .pipe(plugins.filelog())
       .pipe(plugins.plumber())
       .pipe(plugins.babel(babelConfig))
-      .pipe(gulp.dest(files.destFolder));
+      .pipe(gulp.dest(global.files.destFolder));
   };
 };
